@@ -1,18 +1,19 @@
-import ItemsList from "./ItemsList";
+import ItemList from "./ItemList";
 
-const Home = ({items, handleCheck, handleDelete}) => {
-
+const Home = ( {items, handleCheck, handleDelete} ) => {
     return (
-        <main className=" pt-[1%]">
+        <main className="my-[5%] text-center">
             {items.length ? (
-                <ItemsList 
+                <ItemList
                     items={items}
-                    handleCheck ={handleCheck}
+                    handleCheck = {handleCheck}
                     handleDelete = {handleDelete}
                 />
-                ) : (
-                    <p className="text-center pt-20 text-red-600 text-lg">Your List is Empty!</p>
-                )}
+            ) : (
+                <p className="text-xl text-red-500 my-[20%]">
+                    Your ShoppingList is Empty
+                </p>
+            )}
         </main>
     );
 }

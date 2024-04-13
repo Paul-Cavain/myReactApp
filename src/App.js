@@ -1,88 +1,67 @@
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './Home';
-import { useState } from 'react';
-import AddItems from './AddItems';
+import AddItem from './AddItem';
+import Home from './Home'
 import SearchItem from './SearchItem';
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import { useState } from "react";
 
 function App() {
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('ShoppingList')));
 
-  // List and Keys
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem("Shoppinglist")))
+  const [newItem, setNewItem] = useState('')
+  const [search, setSearch] = useState('')
 
-  const setAndSaveItem = (newItems) => {
-    setItems(newItems)
-    localStorage.setItem('Shoppinglist', JSON.stringify(newItems));
+  const setAndSaveItem = (newItem) =>{
+    setItems(newItem)
+    localStorage.setItem('ShoppingList', JSON.stringify(newItem))
   }
 
-  const handleCheck = ((id) => {
-    const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item)
-    setAndSaveItem(listItems)
-  }) 
-
-  // function for deleting an item
-  const handleDelete = (id) => {
-    const listItems = items.filter((item) => item.id !== id)
-    setAndSaveItem(listItems)
-  }
-
-  const [search, setSearch] = useState("")
-
-
-  // adding new Item
-  const AddItem = (item) =>{
-    const id = items.length ? items[items.length -1].id + 1 : 1;
-    const myNewItem = { id, checked:false, item };
+  const addItems = (item) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const myNewItem = { id, checked:false, item};
     const listItems = [...items, myNewItem];
     setAndSaveItem(listItems)
   }
 
-  const [newItem, setNewItem] = useState('');
-
-  //handleSubmit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if(!newItem) return ;
-    console.log(newItem)
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    if(!newItem) return;
 
     // add item
-    AddItem(newItem)
+    addItems(newItem)
     setNewItem('')
   }
 
-  return (
-    <div className="">
-      <section>
-        <div>
-          <Navbar title={'React Js'} />
-        </div>
-        <div>
-          
-          <AddItems 
-            newItem={newItem}
-            setNewItem ={setNewItem}
-            handleSubmit={handleSubmit}
-          />
-          <SearchItem 
-            search={search}
-            setSearch ={setSearch}
-          />
-          <Home 
-            items = {items.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))}
-            handleCheck = {handleCheck}
-            handleDelete = {handleDelete}
-          />
-        </div>
-        <div>
-          <Footer />
-        </div>
-      </section>
-    </div>
-  );
-}
+  const handleCheck = (id) => {
+    const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
+    setAndSaveItem(listItems)
+  }
 
-Navbar.defaultProps = {
-  title: 'Learning React'
+  const handleDelete = (id) => {
+    const listItems = items.filter((item) => item.id !== id);
+    setAndSaveItem(listItems)
+  }
+  return(
+    <section>
+      <Navbar title={'Learning React'}/>
+      <AddItem 
+        newItem={newItem}
+        setNewItem ={setNewItem}
+        handleSubmit={handleSubmit}
+      />
+      <SearchItem 
+        search = {search}
+        setSearch = {setSearch}
+      />
+      <Home 
+        items = {items.filter(item => ((item.item).toLocaleLowerCase()).includes(search.toLocaleLowerCase()))}
+        handleCheck = {handleCheck}
+        handleDelete = {handleDelete}
+      />
+      <Footer 
+        length={items.length}
+      />
+    </section>
+  )
 }
-
-export default App;
+export default App
