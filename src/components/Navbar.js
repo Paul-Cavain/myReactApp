@@ -6,4 +6,9 @@ const Navbar = ({title}) => {
     );
 }
 
+//default Navbar
+Navbar.defaultProps = {
+    title: 'Glocery List'
+}
+
 export default Navbar;
