@@ -1,6 +1,7 @@
 import AddItem from './AddItem';
 import Home from './Home'
 import SearchItem from './SearchItem';
+import ColorDisplay from './colorgenerator/ColorDisplay';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { useState } from "react";
@@ -10,6 +11,11 @@ function App() {
 
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
+  const [colorName, setColorName] = useState('')
+
+  const handleColorChange = (e) => {
+    console.log('')
+  }
 
   const setAndSaveItem = (newItem) =>{
     setItems(newItem)
@@ -57,6 +63,11 @@ function App() {
         items = {items.filter(item => ((item.item).toLocaleLowerCase()).includes(search.toLocaleLowerCase()))}
         handleCheck = {handleCheck}
         handleDelete = {handleDelete}
+      />
+      <ColorDisplay 
+        colorName = {colorName}
+        setColorName = {setColorName}
+        handleColorChange ={handleColorChange}
       />
       <Footer 
         length={items.length}
