@@ -50,15 +50,15 @@ function App() {
   return(
     <section>
       <Navbar title={'Learning React'}/>
-      {/* <AddItem 
+      <AddItem 
         newItem={newItem}
         setNewItem ={setNewItem}
         handleSubmit={handleSubmit}
-      /> */}
-      {/* <SearchItem 
+      />
+      <SearchItem 
         search = {search}
         setSearch = {setSearch}
-      /> */}
+      />
       <Home 
         items = {items.filter(item => ((item.item).toLocaleLowerCase()).includes(search.toLocaleLowerCase()))}
         handleCheck = {handleCheck}
