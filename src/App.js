@@ -12,6 +12,7 @@ function App() {
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
   const [colorName, setColorName] = useState('')
+  const [hexValue, setHexValue] = useState('')
 
   const handleColorChange = (e) => {
     console.log('')
@@ -50,15 +51,15 @@ function App() {
   return(
     <section>
       <Navbar title={'Learning React'}/>
-      <AddItem 
+      {/* <AddItem 
         newItem={newItem}
         setNewItem ={setNewItem}
         handleSubmit={handleSubmit}
-      />
-      <SearchItem 
+      /> */}
+      {/* <SearchItem 
         search = {search}
         setSearch = {setSearch}
-      />
+      /> */}
       <Home 
         items = {items.filter(item => ((item.item).toLocaleLowerCase()).includes(search.toLocaleLowerCase()))}
         handleCheck = {handleCheck}
@@ -68,6 +69,10 @@ function App() {
         colorName = {colorName}
         setColorName = {setColorName}
         handleColorChange ={handleColorChange}
+
+        // colorHex
+        hexValue = {hexValue}
+        setHexValue = {setHexValue}
       />
       <Footer 
         length={items.length}
