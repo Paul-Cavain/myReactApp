@@ -15,3 +15,13 @@
     Adding and deleting item from a list, Search for item from the list
 9. Project Challenge:
     When we add the color name it should display the name of the added color and display its color too.
+10. useEffect Hook
+    it can run at every render
+    useEffect(() =>{
+    console.log('render')
+  }) 
+  
+  and also at load time: we will only see its effect after changing the state of an item
+  useEffect(() =>{
+    console.log('at load time')
+  }, [])
