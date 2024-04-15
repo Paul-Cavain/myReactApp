@@ -4,30 +4,30 @@ import SearchItem from './SearchItem';
 import ColorDisplay from './colorgenerator/ColorDisplay';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('ShoppingList')));
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('ShoppingList')) || []);
 
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
   const [colorName, setColorName] = useState('')
   const [hexValue, setHexValue] = useState('')
 
+  //useEffect
+  useEffect(() => {
+    localStorage.setItem('ShoppingList', JSON.stringify(items))
+  }, [items])
+
   const handleColorChange = (e) => {
     console.log('')
-  }
-
-  const setAndSaveItem = (newItem) =>{
-    setItems(newItem)
-    localStorage.setItem('ShoppingList', JSON.stringify(newItem))
   }
 
   const addItems = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const myNewItem = { id, checked:false, item};
     const listItems = [...items, myNewItem];
-    setAndSaveItem(listItems)
+    setItems(listItems)
   }
 
   const handleSubmit = (e) =>{
@@ -41,21 +41,21 @@ function App() {
 
   const handleCheck = (id) => {
     const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
-    setAndSaveItem(listItems)
+    setItems(listItems)
   }
 
   const handleDelete = (id) => {
     const listItems = items.filter((item) => item.id !== id);
-    setAndSaveItem(listItems)
+    setItems(listItems)
   }
   return(
     <section>
       <Navbar title={'Learning React'}/>
-      {/* <AddItem 
+      <AddItem 
         newItem={newItem}
         setNewItem ={setNewItem}
         handleSubmit={handleSubmit}
-      /> */}
+      />
       {/* <SearchItem 
         search = {search}
         setSearch = {setSearch}
