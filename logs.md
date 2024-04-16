@@ -25,3 +25,5 @@
   useEffect(() =>{
     console.log('at load time')
   }, [])
+11. JSON Server
+12. Fetch API Data
