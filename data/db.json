@@ -1,19 +1,19 @@
 {
-    "items": [
-        {
-            "id": 1,
-            "checked": false,
-            "items": "Almonds, Unsalted, in the blue bag"
-        },
-        {
-            "id": 2,
-            "checked": false,
-            "items": "Chicken Pizza"
-        },
-        {
-            "id": 3,
-            "checked": false,
-            "items": "Coke"
-        }
-    ]
+  "items": [
+    {
+      "id": "1",
+      "checked": true,
+      "item": "Almonds, Unsalted, in the blue bag"
+    },
+    {
+      "id": "2",
+      "checked": false,
+      "item": "Chicken Pizza"
+    },
+    {
+      "id": "3",
+      "checked": false,
+      "item": "Coke"
+    }
+  ]
 }

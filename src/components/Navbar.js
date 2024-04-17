@@ -1,6 +1,6 @@
 const Navbar = ({title}) => {
     return (
-        <nav className="py-4 text-xl w-full bg-sky-400 text-white text-start px-2">
+        <nav className="py-4 text-2xl w-full bg-sky-400 text-white text-start px-2">
             <h1>{title}</h1>
         </nav>
     );

@@ -3,7 +3,7 @@ import colorNames from "colornames"
 const ColorDisplay = ( {colorName, setColorName, handleColorChange, hexValue, setHexValue} ) =>{
     return(
         <form className="mx-3" onSubmit={handleColorChange}>
-            <hr className="border-2 border-red-600" />
+            <hr className="border-2 border-red-600 mt-5" />
             <h2 className="text-center mt-12 text-xl">ColorGerenerator</h2>
             <div className="shadow-md border-2 border-black rounded-md h-40 mt-2" style={{backgroundColor: colorName}}>
                 <p 
