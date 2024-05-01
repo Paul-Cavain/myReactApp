@@ -6,17 +6,22 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { useState, useEffect } from "react";
 import apiRequest from './apiRequest'
+import Form from './FetcingApiData/Form';
+import { List } from 'react-bootstrap-icons';
 
 function App() {
-  const API_URL = 'http://localhost:3500/items';
+  // const API_URL = 'http://localhost:3500/items';
+  const API_URL_USERS = 'https://jsonplaceholder.typicode.com/users'  
 
   const [items, setItems] = useState([]);
+  const [myItems, setMyItems] = useState([]);
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
   const [colorName, setColorName] = useState('');
   const [hexValue, setHexValue] = useState('');
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [reqType, setReqType] = useState('users');
 
   //useEffect
   useEffect(() => {
@@ -36,8 +41,8 @@ function App() {
     setTimeout(() => {
       (async () => await fetchItems())();
     }, 2000)
-    
   }, [])
+
 
   const handleColorChange = (e) => {
     console.log('')
@@ -55,7 +60,7 @@ function App() {
       headers: {
         'Content-Type' : 'application/json'
       }, 
-      body: JSON.stringify(myNewItem)
+      body: JSON.stringify(myNewItem) 
     }
     const result = await apiRequest(API_URL, postOptions);
     if(result) setFetchError(result);
@@ -102,7 +107,11 @@ function App() {
   }
   return(
     <section>
-      <Navbar title={'Groceries Lists'} />
+      <Navbar title={'Fetching API Data'} />
+      <Form reqType = {reqType} setReqType={setReqType} />
+      <List 
+        items = {items}
+      />
       <AddItem 
         newItem={newItem}
         setNewItem ={setNewItem}
@@ -119,17 +128,20 @@ function App() {
           items = {items.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))}
           handleCheck = {handleCheck}
           handleDelete = {handleDelete}
+          
         /> }
       </main>
-      {/* <ColorDisplay 
+
+      <ColorDisplay 
         colorName = {colorName}
         setColorName = {setColorName}
         handleColorChange ={handleColorChange}
 
-        // colorHex
+        colorHex
         hexValue = {hexValue}
         setHexValue = {setHexValue}
-      /> */}
+      />
+
       <Footer 
         length={items.length}
       />

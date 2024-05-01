@@ -27,3 +27,7 @@
 10. JSON Server
 11. Fetch API Data
 12. CRUD Operations (posting item, update item and delete item) to  api (db.json file)
+13. Solving interactive card details challenge using React
+14. Solving fetching API data using React
+15. React Router && Router Hooks & Links
+16. Flexbox Component
