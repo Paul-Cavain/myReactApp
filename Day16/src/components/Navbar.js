@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ search, setSearch }) => {
     return(
-        <nav className="bg-black pt-2 md:flex-col left-0 right-0 top-0 fixed mt-14 mx-20 flex-grow-1">
+        <nav className="bg-black pt-2 md:flex-col left-0 right-0 top-0 fixed mt-14 mx-6 flex-grow-0">
             <form onSubmit={(e) =>e.preventDefault()}>
                 <label htmlFor="search"></label>
                 <input 
